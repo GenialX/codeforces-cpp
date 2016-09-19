@@ -59,6 +59,7 @@ void solve(){
 		L.PB(MP(x,i+1));
 	}
 	sort(all(L));
+	sort(L.begin(), L.end());
 	rep(i,0,sz(L)/2){
 		printf("%d %d\n",L[i].BB,L[sz(L)-1-i].BB);
 	}
