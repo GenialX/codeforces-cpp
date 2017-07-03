@@ -1,5 +1,7 @@
 /**
  * http://codeforces.com/contest/822/problem/B
+ *
+ * not accepted by codeforces.com, but work for my mac...
  */
 #include <iostream>
 
