@@ -2,12 +2,15 @@
  * http://codeforces.com/contest/822/problem/C
  *
  * not accepted at the 33st test.
+ *
+ * now this case is accepted, because that values of the local array is random, so...
+ * see: https://zhidao.baidu.com/question/137051525.html
  */
 #include <iostream>
 #include <vector>
 #include <algorithm>
 
-#define MAX 200001
+#define MAX 210000
 
 using namespace std;
 
@@ -37,14 +40,14 @@ typedef struct voucher
 
 vector<Voucher> vouchers;
 
+int n, x, c = -1;
+int dp[MAX];
+
 int main(int argc, char * argv[]) 
 {
-    int n, x, c = -1;
     cin>>n;
     cin>>x;
-    int dp[MAX];
-    for (int i = 0; i < n; i++)
-    {
+    for (int i = 0; i < n; i++) {
         Voucher voucher;
         cin>>voucher.l;
         cin>>voucher.r;
@@ -58,8 +61,7 @@ int main(int argc, char * argv[])
     sort(vouchers.begin(), vouchers.end()); // sort by the l or r, asc
 
     // dp
-    for (int i = 0; i < vouchers.size(); i++)
-    {
+    for (int i = 0; i < vouchers.size(); ++i) {
         int dur = vouchers[i].r - vouchers[i].l + 1;
         if (vouchers[i].type == 1) // for arriving
         {
@@ -68,7 +70,7 @@ int main(int argc, char * argv[])
         else
         { // for leaving
             int left = x - dur;
-            if (left < 0 || dp[left] == 0) continue;
+            if (left <= 0 || dp[left] == 0) continue;
             if (dp[left] + vouchers[i].c < c || c == -1) c = dp[left] + vouchers[i].c;
         }
     }
